@@ -16,6 +16,7 @@ VALIDATE(){
     if [ $1 -ne 0 ]
     then
        echo -e "$2 ... $R FAILED $N"
+       exit 1
     else
        echo -e "$2 ... $G SUCCESS $N"
     fi
@@ -41,7 +42,7 @@ dnf install nodejs -y  &>> $LOGFILE
 
 VALIDATE $? "Installing NodeJS:18" 
 
-id roboshop
+id roboshop #if roboshop user does not exist, then it is failure
 if [ $? -ne 0 ]
 then
     useradd roboshop
@@ -64,7 +65,7 @@ unzip -o /tmp/catalogue.zip &>> $LOGFILE
 
 VALIDATE $? "unzipping catalogue" 
 
-npm install
+npm install &>> $LOGFILE
 
 VALIDATE $? "Installing dependencies" 
 
@@ -73,7 +74,7 @@ cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.s
 
 VALIDATE $? "Copying catalogue services file"
 
-systemctl daemon-reload
+systemctl daemon-reload &>> $LOGFILE
 
 VALIDATE $? "Catalogue daemon reload" 
 
