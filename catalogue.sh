@@ -42,12 +42,17 @@ dnf install nodejs -y  &>> $LOGFILE
 VALIDATE $? "Installing NodeJS:18" 
 
 useradd roboshop
+if [ $? -ne 0 ]
+then
+    useradd roboshop
+    VALIDATE $? "roboshop user creation"
+else
+    echo -e "roboshop user already exist $Y SKIPPING $N"
+fi
 
-VALIDATE $? "Creating roboshop user" &>> $LOGFILE
+mkdir -p /app
 
-mkdir /app
-
-VALIDATE $? "Creating app directory" &>> $LOGFILE
+VALIDATE $? "Creating app directory" 
 
 curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>> $LOGFILE
 
@@ -55,7 +60,7 @@ VALIDATE $? "Downloading catalogue application"
 
 cd /app 
 
-unzip /tmp/catalogue.zip &>> $LOGFILE
+unzip -o /tmp/catalogue.zip &>> $LOGFILE
 
 VALIDATE $? "unzipping catalogue" 
 
