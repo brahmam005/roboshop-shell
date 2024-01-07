@@ -55,11 +55,11 @@ mkdir -p /app
 
 VALIDATE $? "Creating app directory" 
 
-curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>> $LOGFILE
 
 VALIDATE $? "Downloading catalogue application" 
 
-cd /app 
+cd /app curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>> $LOGFILE
+
 
 unzip -o /tmp/catalogue.zip &>> $LOGFILE
 
@@ -97,6 +97,7 @@ VALIDATE $? "Installing MongoDB client"
 mongo --host $MONGODB_HOST </app/schema/catalogue.js &>> $LOGFILE
 
 VALIDATE $? "Loading catalogue data into MongoDB"
+
 
 
 
