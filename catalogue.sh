@@ -58,7 +58,7 @@ VALIDATE $? "Creating app directory"
 
 VALIDATE $? "Downloading catalogue application" 
 
-cd /app curl -o /tmp/catalogue.zip.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>> $LOGFILE
+cd /app curl -o /tmp/catalogue.zip.ZIP https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>> $LOGFILE
 
 
 unzip -o /tmp/catalogue.zip &>> $LOGFILE
