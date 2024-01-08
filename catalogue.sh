@@ -5,7 +5,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-MONGODB_HOST=172.31.47.197
+MONGODB_HOST=172.31.32.248
 
 TIMESTAMP=$(date +%F-%H-%M-%S)
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
@@ -57,6 +57,8 @@ VALIDATE $? "Creating app directory"
 
 
 VALIDATE $? "Downloading catalogue application" 
+
+cd /app
 
 curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>> $LOGFILE
 
