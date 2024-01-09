@@ -7,7 +7,6 @@ Y="\e[33m"
 N="\e[0m"
 MONGDB_HOST=mongodb.brahmam005aws.shop
 
-
 TIMESTAMP=$(date +%F-%H-%M-%S)
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
 
@@ -49,7 +48,7 @@ VALIDATE $? "Enabling MySQL Server"
 
 systemctl start mysqld &>> $LOGFILE
 
-VALIDATE $? "Starting MySQL Server" &>> $LOGFILE
+VALIDATE $? "Starting MySQL Server"
 
 mysql_secure_installation --set-root-pass RoboShop@1 &>> $LOGFILE
 
