@@ -5,7 +5,7 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-MONGODB_HOST=172.31.32.248
+MONGODB_HOST=mongodb.brahmam005aws.shop
 
 TIMESTAMP=$(date +%F-%H-%M-%S)
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
@@ -55,12 +55,11 @@ mkdir -p /app
 
 VALIDATE $? "Creating app directory" 
 
+curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>> $LOGFILE
 
 VALIDATE $? "Downloading catalogue application" 
 
 cd /app
-
-curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>> $LOGFILE
 
 unzip -o /tmp/catalogue.zip &>> $LOGFILE
 

@@ -6,6 +6,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+
 TIMESTAMP=$(date +%F-%H-%M-%S)
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
 
@@ -54,12 +55,11 @@ mkdir -p /app
 
 VALIDATE $? "Creating app directory" 
 
-
-VALIDATE $? "Downloading cart application" 
-
-cd /app
-
 curl -o /tmp/cart.zip https://roboshop-builds.s3.amazonaws.com/cart.zip &>> $LOGFILE
+
+VALIDATE $? "Downloading cart application"
+
+cd /app 
 
 unzip -o /tmp/cart.zip &>> $LOGFILE
 
